@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#d9dcd4">
+<meta name="description" content="Viva ou Morra. Crônicas, reportagens e histórias de toda parte.">
+<title>Viva ou Morra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Rozha+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="capa">
+  <div class="miolo">
+    <div class="faixa">
+      <span>Edição nº 1</span>
+      <span>Crônicas, reportagens e histórias de toda parte</span>
+    </div>
+    <h1 class="nome"><a href="#/">Viva ou Morra</a></h1>
+  </div>
+  <div class="miolo">
+    <nav class="secoes" aria-label="Seções do jornal">
+      <a href="#/" data-secao="">Tudo</a>
+      <a href="#/secao/cronica" data-secao="cronica">Crônicas</a>
+      <a href="#/secao/reportagem" data-secao="reportagem">Reportagens</a>
+      <a href="#/secao/historia" data-secao="historia">Histórias</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo" class="miolo" tabindex="-1"></main>
+
+<footer class="rodape">
+  <div class="miolo">
+    <p>Viva ou Morra. Todo texto leva a assinatura de quem o escreveu.</p>
+  </div>
+</footer>
+
+<noscript><p class="miolo">Este jornal precisa de JavaScript pra mostrar os textos.</p></noscript>
+
+<script src="artigos.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
