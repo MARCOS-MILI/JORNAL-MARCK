@@ -28,6 +28,14 @@
     return partes.join(', ');
   }
 
+  // etiqueta da seção e, nas edições extras, o carimbo
+  function cabeca(artigo) {
+    var c = el('div', 'cabeca');
+    c.appendChild(el('p', 'tag', artigo.secao));
+    if (artigo.edicao && /extra/i.test(artigo.edicao)) c.appendChild(el('p', 'selo', 'Extra'));
+    return c;
+  }
+
   function marcarSecao(chave) {
     var links = document.querySelectorAll('.secoes a');
     Array.prototype.forEach.call(links, function (a) {
@@ -61,33 +69,38 @@
       return;
     }
 
+    var resto = lista.slice(1);
+    var primeira = el('div', resto.length ? 'primeira com-coluna' : 'primeira');
+
     var primeiro = lista[0];
     var destaque = el('article', 'destaque');
-    destaque.appendChild(el('p', 'tag', primeiro.secao));
+    destaque.appendChild(cabeca(primeiro));
     var h2 = el('h2');
     h2.appendChild(link('#/artigo/' + primeiro.id, null, primeiro.titulo));
     destaque.appendChild(h2);
     if (primeiro.subtitulo) destaque.appendChild(el('p', 'subtitulo', primeiro.subtitulo));
     destaque.appendChild(el('p', 'assinatura', assinatura(primeiro)));
     destaque.appendChild(link('#/artigo/' + primeiro.id, 'ler', 'Ler o texto'));
-    raiz.appendChild(destaque);
+    primeira.appendChild(destaque);
 
-    var resto = lista.slice(1);
     if (resto.length) {
-      raiz.appendChild(el('h3', 'mais', 'Mais textos'));
-      var grade = el('div', 'grade');
+      var coluna = el('aside', 'coluna');
+      coluna.setAttribute('aria-label', 'Mais textos');
+      coluna.appendChild(el('h3', 'mais', 'Mais textos'));
       resto.forEach(function (a) {
         var item = el('article', 'item');
-        item.appendChild(el('p', 'tag', a.secao));
+        item.appendChild(cabeca(a));
         var h = el('h4');
         h.appendChild(link('#/artigo/' + a.id, null, a.titulo));
         item.appendChild(h);
         if (a.subtitulo) item.appendChild(el('p', 'subtitulo', a.subtitulo));
         item.appendChild(el('p', 'assinatura', assinatura(a)));
-        grade.appendChild(item);
+        coluna.appendChild(item);
       });
-      raiz.appendChild(grade);
+      primeira.appendChild(coluna);
     }
+
+    raiz.appendChild(primeira);
   }
 
   function artigo(id) {
@@ -108,7 +121,7 @@
     document.title = a.titulo + ' | Viva ou Morra';
     var pagina = el('article', 'texto');
     pagina.appendChild(link('#/', 'voltar', 'Voltar à primeira página'));
-    pagina.appendChild(el('p', 'tag', a.secao));
+    pagina.appendChild(cabeca(a));
     pagina.appendChild(el('h2', null, a.titulo));
     if (a.subtitulo) pagina.appendChild(el('p', 'subtitulo', a.subtitulo));
     pagina.appendChild(el('p', 'assinatura', assinatura(a)));

@@ -6,9 +6,8 @@
 <meta name="theme-color" content="#d9dcd4">
 <meta name="description" content="Viva ou Morra. Crônicas, reportagens e histórias de toda parte.">
 <title>Viva ou Morra</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Rozha+One&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/rozha-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/old-standard-tt-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,14 +20,14 @@
     </div>
     <h1 class="nome"><a href="#/">Viva ou Morra</a></h1>
   </div>
-  <div class="miolo">
-    <nav class="secoes" aria-label="Seções do jornal">
+  <nav class="secoes" aria-label="Seções do jornal">
+    <div class="miolo">
       <a href="#/" data-secao="">Tudo</a>
       <a href="#/secao/cronica" data-secao="cronica">Crônicas</a>
       <a href="#/secao/reportagem" data-secao="reportagem">Reportagens</a>
       <a href="#/secao/historia" data-secao="historia">Histórias</a>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <main id="conteudo" class="miolo" tabindex="-1"></main>
