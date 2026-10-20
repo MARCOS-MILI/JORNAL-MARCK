@@ -128,6 +128,9 @@
     var corpo = el('div', 'corpo');
     a.corpo.forEach(function (p) { corpo.appendChild(el('p', null, p)); });
     pagina.appendChild(corpo);
+    var fim = el('div', 'floreio');
+    fim.setAttribute('aria-hidden', 'true');
+    pagina.appendChild(fim);
     raiz.appendChild(pagina);
   }
 

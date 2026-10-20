@@ -57,7 +57,8 @@ body {
   color: var(--tinta);
   font: 400 1.1rem/1.65 var(--texto);
   background-color: var(--papel);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .1 0 0 0 0 .08 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  /* papel envelhecido: escurece de leve nas bordas, sobre o granulado */
+  background-image: radial-gradient(ellipse at center, transparent 55%, rgba(70, 55, 30, 0.2) 100%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .1 0 0 0 0 .08 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
 }
 
 a { color: inherit; }
@@ -78,7 +79,29 @@ main:focus { outline: none; }
 
 /* ---------- Capa ---------- */
 
-.capa { border-top: 14px solid var(--tinta); }
+.capa { border-bottom: 1px solid var(--linha); }
+
+/* faixa preta do topo, com losangos como uma fita de telégrafo */
+.capa::before {
+  content: "";
+  display: block;
+  height: 18px;
+  background-color: var(--tinta);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath d='M9 5l4 4-4 4-4-4z' fill='%23d9dcd4' fill-opacity='.6'/%3E%3C/svg%3E");
+}
+
+/* florão: losangos e fios, com o vermelho deslocado como no nome do jornal */
+.floreio {
+  height: 22px;
+  margin: 0 auto;
+  max-width: 100%;
+  background-repeat: no-repeat;
+  background-size: 180px 22px;
+  background-position: center, calc(50% + 2px) calc(50% + 2px);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 20'%3E%3Cg fill='%23151515'%3E%3Cpath d='M80 3l7 7-7 7-7-7z'/%3E%3Cpath d='M62 7l3 3-3 3-3-3zM98 7l3 3-3 3-3-3z'/%3E%3Ccircle cx='4' cy='10' r='1.8'/%3E%3Ccircle cx='156' cy='10' r='1.8'/%3E%3C/g%3E%3Cpath d='M8 10h46M106 10h46' stroke='%23151515' stroke-width='1.2' fill='none'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 20'%3E%3Cg fill='%23a3231b'%3E%3Cpath d='M80 3l7 7-7 7-7-7z'/%3E%3Cpath d='M62 7l3 3-3 3-3-3zM98 7l3 3-3 3-3-3z'/%3E%3Ccircle cx='4' cy='10' r='1.8'/%3E%3Ccircle cx='156' cy='10' r='1.8'/%3E%3C/g%3E%3Cpath d='M8 10h46M106 10h46' stroke='%23a3231b' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+}
 
 .faixa {
   display: flex;
@@ -130,6 +153,21 @@ main:focus { outline: none; }
   gap: 0 1.6rem;
 }
 
+/* losango vermelho entre uma seção e outra */
+.secoes a + a { position: relative; }
+
+.secoes a + a::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -4px;
+  background: var(--vermelho);
+  transform: rotate(45deg);
+}
+
 .secoes a {
   padding: 0.55rem 0.1rem 0.4rem;
   border-bottom: 4px solid transparent;
@@ -142,6 +180,38 @@ main:focus { outline: none; }
 .secoes a:hover { border-bottom-color: var(--linha); }
 
 .secoes a[aria-current="page"] { border-bottom-color: var(--vermelho); }
+
+/* lema do jornal, entre fios duplos */
+.lema {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.8rem 0 0.85rem;
+  color: var(--suave);
+  font-size: 1.02rem;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.lema::before,
+.lema::after {
+  content: "";
+  display: none;
+  flex: 1;
+  min-width: 0.8rem;
+  height: 5px;
+  border-top: 1px solid var(--linha);
+  border-bottom: 1px solid var(--linha);
+}
+
+/* os fios só aparecem quando sobra espaço ao lado do lema */
+@media (min-width: 640px) {
+  .lema::before,
+  .lema::after { display: block; }
+}
 
 /* ---------- Primeira página ---------- */
 
@@ -171,15 +241,26 @@ main { flex: 1 0 auto; width: 100%; padding-top: 2.4rem; padding-bottom: 4rem; }
 /* carimbo das edições extras */
 .selo {
   margin: 0;
-  padding: 0.28rem 0.7rem 0.2rem;
-  border: 3px double var(--vermelho);
+  padding: 0.3rem 0.8rem 0.22rem;
+  border: 4px double var(--vermelho);
   color: var(--vermelho);
-  font: 400 1.1rem/1 var(--titulo);
+  font: 400 1.3rem/1 var(--titulo);
   transform: rotate(-3deg);
   mix-blend-mode: multiply;
 }
 
-.destaque { max-width: 52rem; }
+/* a matéria principal ganha moldura, com o vermelho deslocado atrás */
+.destaque {
+  max-width: 52rem;
+  padding: 1.2rem 1.1rem 1.5rem;
+  border: 4px double var(--tinta);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0.35rem 0.35rem 0 var(--vermelho);
+}
+
+@media (min-width: 600px) {
+  .destaque { padding: 1.6rem 1.8rem 1.9rem; }
+}
 
 .destaque h2 {
   margin: 0 0 0.8rem;
@@ -236,8 +317,21 @@ main { flex: 1 0 auto; width: 100%; padding-top: 2.4rem; padding-bottom: 4rem; }
 }
 
 .mais {
-  margin: 0 0 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 0 1.2rem;
   font: 400 1.5rem/1.2 var(--titulo);
+}
+
+.mais::before,
+.mais::after {
+  content: "";
+  flex: 1;
+  min-width: 0.6rem;
+  height: 5px;
+  border-top: 1px solid var(--tinta);
+  border-bottom: 1px solid var(--tinta);
 }
 
 .item + .item {
@@ -341,7 +435,10 @@ main { flex: 1 0 auto; width: 100%; padding-top: 2.4rem; padding-bottom: 4rem; }
   text-align: center;
 }
 
-.rodape p { margin: 0; }
+.rodape p { margin: 0.5rem 0 0; }
+
+/* fim do texto */
+.texto .floreio { margin-top: 2rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .nome a { animation: none; }
