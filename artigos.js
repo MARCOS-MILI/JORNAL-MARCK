@@ -16,7 +16,7 @@ window.ARTIGOS = [
     secao: "Reportagem",
     titulo: "Alerta: o maior cassino de Las Vegas é invadido pela polícia",
     subtitulo: "Chefe do lugar morre em tiroteio, e boatos falam em Hydra, em um agente do Reino Unido e em um evento marcado pra esta semana.",
-    autor: "A redação",
+    autor: "F.Y",
     edicao: "Edição extra, atualizada",
     corpo: [
       "A polícia dos Estados Unidos invadiu o maior cassino de Las Vegas. A operação terminou em tiroteio dentro do salão.",
