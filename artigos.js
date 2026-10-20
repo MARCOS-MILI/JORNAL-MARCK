@@ -12,6 +12,24 @@
 */
 window.ARTIGOS = [
   {
+    id: "cassino-de-las-vegas-invadido",
+    secao: "Reportagem",
+    titulo: "Alerta: o maior cassino de Las Vegas é invadido pela polícia",
+    subtitulo: "Chefe do lugar morre em tiroteio, e boatos falam em Hydra, em um agente do Reino Unido e em um evento marcado pra esta semana.",
+    autor: "A redação",
+    edicao: "Edição extra",
+    corpo: [
+      "A polícia dos Estados Unidos invadiu o maior cassino de Las Vegas. A operação terminou em tiroteio dentro do salão.",
+      "O motivo seria a suspeita de que a Hydra havia se infiltrado no cassino. Nos bastidores, ele era conhecido como um ponto onde se vendiam informações, e quem mandava ali era um homem que só se conhecia por Corvo.",
+      "Corvo foi morto durante a ação. Era um homem corpulento, de sobretudo escuro, chapéu de aba curta e gravata clara, sempre de cara fechada. O posto de chefe do cassino agora está vago, e ninguém sabe dizer quem vai ocupá-lo.",
+      "Mas nem tudo foi o que pareceu. Fontes ouvidas pela redação afirmam que a morte de Corvo já vinha sendo planejada, e que a ordem partiu do Reino Unido. O disparo teria sido de um agente britânico: um rapaz ruivo, de chapéu e casaco longo e escuro, que estava no salão durante a ação.",
+      "Fica a pergunta que ninguém consegue responder. Corvo foi morto só por ser um criminoso, ou os boatos de que ele vendia informações pra Hydra eram verdadeiros?",
+      "Os mesmos boatos dizem que Corvo e outras organizações se preparavam para algum tipo de evento, e que ele pode acontecer ainda esta semana. Ninguém sabe dizer o que é.",
+      "Há também um símbolo ligado ao caso: um olho aberto dentro de uma forma oval escura, com garras curvas em volta, como as patas de uma aranha. Quem vir esse desenho em qualquer lugar deve tomar cuidado.",
+      "Fiquem de olho nos cassinos. Fiquem de olho em todos os lugares. Eles já estão entre nós."
+    ]
+  },
+  {
     id: "este-jornal-nasce-hoje",
     secao: "Nota da redação",
     titulo: "Este jornal nasce hoje",
